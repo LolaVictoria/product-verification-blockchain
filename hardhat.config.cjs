@@ -21,7 +21,9 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111,
       timeout: 60000, // 60 seconds timeout
-      gasPrice: 20000000000, // 20 gwei
+      gasPrice: 2000000000, // 2 gwei
+      gas: 800000, // 800k gas
+
     },
     // Optional: Add other testnets
     goerli: {
@@ -37,9 +39,7 @@ module.exports = {
   },
   etherscan: {
     apiKey: {
-      sepolia: process.env.ETHERSCAN_API_KEY,
-      goerli: process.env.ETHERSCAN_API_KEY,
-      mainnet: process.env.ETHERSCAN_API_KEY,
+      sepolia: process.env.ETHERSCAN_API_KEY,  
     }
-  }
+}
 };
