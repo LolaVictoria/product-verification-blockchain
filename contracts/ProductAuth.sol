@@ -98,3 +98,4 @@ contract ProductAuth {
         return products[_serialNumber].exists;
     }
 }
+
