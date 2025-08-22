@@ -10,6 +10,7 @@ module.exports = {
         enabled: true,
         runs: 200,
       },
+      viaIR: true, // Enable Yul-based IR pipeline
     },
   },
   sourcify: {
@@ -24,10 +25,12 @@ module.exports = {
       accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : [],
       chainId: 11155111,
       timeout: 60000, // 60 seconds timeout
-      gasPrice: 2000000000, // 2 gwei
-      gas: 800000, // 800k gas
+      // gasPrice: 2000000000, // 2 gwei
+      // gas: 800000, // 800k gas
+      gas: 500000
 
     },
+
     // Optional: Add other testnets
     goerli: {
       url: process.env.GOERLI_RPC_URL || "https://rpc.goerli.mudit.blog",
