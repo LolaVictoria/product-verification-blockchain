@@ -1,8 +1,10 @@
 {
   "contractName": "ElectronicsAuthentication",
-  "contractAddress": "0xee5364c0Fd2cFFc8aF3443386811633E09d6d4F9",
+  "contractAddress": "0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950",
   "deployer": "0x051051074B7BbfaB5bB1A72432129118218cDe97",
   "network": "sepolia",
-  "timestamp": "2025-08-22T16:43:25.693Z",
-  "blockNumber": 9040898
+  "timestamp": "2025-08-24T03:54:27.869Z",
+  "blockNumber": 9051135,
+  "transactionHash": "0xba00927e6554dc2f2743d19574b57c8436cc6670a497a8bb77b27d87a5b869ec",
+  "gasUsed": "2484632"
 }

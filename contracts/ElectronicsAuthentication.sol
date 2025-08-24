@@ -99,6 +99,24 @@ contract ElectronicsAuthentication {
         
         serialNumberExists[_serialNumber] = true;
         
+        // Split device creation to avoid stack too deep
+        _createDevice(_serialNumber, _brand, _model, _deviceType, _storage, _color, _batchNumber, _specHash);
+        
+        ownerDevices[msg.sender].push(_serialNumber);
+        
+        emit DeviceRegistered(_serialNumber, msg.sender);
+    }
+    
+    function _createDevice(
+        string memory _serialNumber,
+        string memory _brand,
+        string memory _model,
+        string memory _deviceType,
+        string memory _storage,
+        string memory _color,
+        string memory _batchNumber,
+        string memory _specHash
+    ) private {
         devices[_serialNumber] = Device({
             serialNumber: _serialNumber,
             brand: _brand,
@@ -114,10 +132,6 @@ contract ElectronicsAuthentication {
             registrationTime: block.timestamp,
             specificationHash: _specHash
         });
-        
-        ownerDevices[msg.sender].push(_serialNumber);
-        
-        emit DeviceRegistered(_serialNumber, msg.sender);
     }
     
     function transferOwnership(
@@ -132,20 +146,33 @@ contract ElectronicsAuthentication {
         Device storage device = devices[_serialNumber];
         address previousOwner = device.currentOwner;
         
+        // Create ownership record
+        _createOwnershipRecord(_serialNumber, previousOwner, _newOwner, _transferReason, _salePrice);
+        
+        // Update current owner
+        device.currentOwner = _newOwner;
+        
+        // Update owner device lists
+        _removeFromOwnerDevices(previousOwner, _serialNumber);
+        ownerDevices[_newOwner].push(_serialNumber);
+        
+        emit OwnershipTransferred(_serialNumber, previousOwner, _newOwner, _salePrice);
+    }
+    
+    function _createOwnershipRecord(
+        string memory _serialNumber,
+        address _previousOwner,
+        address _newOwner,
+        string memory _transferReason,
+        uint256 _salePrice
+    ) private {
         ownershipHistory[_serialNumber].push(OwnershipHistory({
-            previousOwner: previousOwner,
+            previousOwner: _previousOwner,
             newOwner: _newOwner,
             transferDate: block.timestamp,
             transferReason: _transferReason,
             salePrice: _salePrice
         }));
-        
-        device.currentOwner = _newOwner;
-        
-        _removeFromOwnerDevices(previousOwner, _serialNumber);
-        ownerDevices[_newOwner].push(_serialNumber);
-        
-        emit OwnershipTransferred(_serialNumber, previousOwner, _newOwner, _salePrice);
     }
     
     function _removeFromOwnerDevices(address owner, string memory serialNumber) private {
@@ -172,6 +199,18 @@ contract ElectronicsAuthentication {
             return (false, false, "", "", "", "", address(0));
         }
         
+        return _getDeviceVerification(_serialNumber);
+    }
+    
+    function _getDeviceVerification(string memory _serialNumber) private view returns (
+        bool,
+        bool,
+        string memory,
+        string memory,
+        string memory,
+        string memory,
+        address
+    ) {
         Device memory device = devices[_serialNumber];
         Manufacturer memory manufacturer = manufacturers[device.manufacturer];
         
@@ -217,6 +256,19 @@ contract ElectronicsAuthentication {
     ) {
         require(serialNumberExists[_serialNumber], "Device not found");
         
+        return _getDeviceDetailsInternal(_serialNumber);
+    }
+    
+    function _getDeviceDetailsInternal(string memory _serialNumber) private view returns (
+        string memory,
+        string memory,
+        string memory,
+        string memory,
+        string memory,
+        string memory,
+        address,
+        uint256
+    ) {
         Device memory device = devices[_serialNumber];
         Manufacturer memory manufacturer = manufacturers[device.manufacturer];
         
@@ -241,14 +293,24 @@ contract ElectronicsAuthentication {
     ) {
         require(serialNumberExists[_serialNumber], "Device not found");
         
+        return _getOwnershipHistoryArrays(_serialNumber);
+    }
+    
+    function _getOwnershipHistoryArrays(string memory _serialNumber) private view returns (
+        address[] memory,
+        address[] memory,
+        uint256[] memory,
+        string[] memory,
+        uint256[] memory
+    ) {
         OwnershipHistory[] memory history = ownershipHistory[_serialNumber];
         uint256 length = history.length;
         
-        previousOwners = new address[](length);
-        newOwners = new address[](length);
-        transferDates = new uint256[](length);
-        transferReasons = new string[](length);
-        salePrices = new uint256[](length);
+        address[] memory previousOwners = new address[](length);
+        address[] memory newOwners = new address[](length);
+        uint256[] memory transferDates = new uint256[](length);
+        string[] memory transferReasons = new string[](length);
+        uint256[] memory salePrices = new uint256[](length);
         
         for (uint256 i = 0; i < length; i++) {
             previousOwners[i] = history[i].previousOwner;
@@ -300,14 +362,20 @@ contract ElectronicsAuthentication {
     }
     
     function getAllAuthorizedManufacturers() public view returns (address[] memory) {
+        return _getActiveManufacturers();
+    }
+    
+    function _getActiveManufacturers() private view returns (address[] memory) {
         uint activeCount = 0;
         
+        // Count active manufacturers
         for (uint i = 0; i < manufacturerList.length; i++) {
             if (verifiedManufacturers[manufacturerList[i]]) {
                 activeCount++;
             }
         }
         
+        // Create array with active manufacturers
         address[] memory active = new address[](activeCount);
         uint index = 0;
         

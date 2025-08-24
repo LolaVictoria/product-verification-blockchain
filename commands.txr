@@ -1,0 +1,205 @@
+npx hardhat node
+[dotenv@17.2.1] injecting env (12) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Started HTTP and WebSocket JSON-RPC server at http://127.0.0.1:8545/
+
+Accounts
+========
+
+WARNING: These accounts, and their private keys, are publicly known.
+Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+
+Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
+Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+
+Account #1: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 (10000 ETH)
+Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+
+Account #2: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC (10000 ETH)
+Private Key: 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
+
+Account #3: 0x90F79bf6EB2c4f870365E785982E1f101E93b906 (10000 ETH)
+Private Key: 0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6
+
+Account #4: 0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65 (10000 ETH)
+Private Key: 0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
+
+Account #5: 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc (10000 ETH)
+Private Key: 0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
+
+Account #6: 0x976EA74026E726554dB657fA54763abd0C3a0aa9 (10000 ETH)
+Private Key: 0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e
+
+#step 2
+npx hardhat run scripts/deploy.cjs --network localhost
+[dotenv@17.2.1] injecting env (12) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Compiled 1 Solidity file successfully (evm target: paris).
+[dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+🌐 Network: localhost
+👤 Deploying with account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+💰 Account balance: 10000.0 ETH
+🧪 Using LOCAL TEST ACCOUNT - No real funds at risk!
+Available test accounts: 20
+🚀 Deploying ElectronicsAuthentication contract...
+✅ ElectronicsAuthentication deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+👤 Deployed by: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+💰 Remaining balance: 9999.99727141216796875 ETH
+📋 Transaction hash: 0x6c1830b34ce7a7952b1048a42d340d68bd2672d07f7d98eb67d48cd08d13b722
+⛽ Gas used: 30000000
+
+🏭 Checking pre-loaded manufacturers...
+Nexlify Tech verified: true
+Quantum Mobile verified: true
+Stellar Devices verified: true
+📋 Contract admin: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+✅ Admin matches deployer: true
+📁 Deployment info saved to: /home/damilola/Desktop/product-verification-blockchain-1/deployments/ElectronicsAuthentication-localhost.json
+
+🧪 Local deployment complete! Contract is ready for testing.
+💡 You can interact with it using:
+npx hardhat console --network localhost
+
+🎉 Deployment completed successfully!
+damilola@damilola:~/Desktop/product-verification-blockchain-1$ npx hardhat run scripts/interact.cjs --network localhost
+[dotenv@17.2.1] injecting env (12) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+[dotenv@17.2.1] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+🔗 Connecting to ElectronicsAuthentication contract at: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+
+📋 Account Information:
+Admin: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Manufacturer 1: 0x70997970C51812dc3A010C7d01b50e0d17dc79C8
+Manufacturer 2: 0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC
+User: 0x90F79bf6EB2c4f870365E785982E1f101E93b906
+
+👑 Checking contract admin...
+Contract admin: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+Is deployer the admin? true
+
+🏭 Checking pre-loaded manufacturers...
+❌ Error during interaction: bad address checksum (argument="address", value="0x742d35Cc622C4532c0532255c87A59B852b74f8d", code=INVALID_ARGUMENT, version=6.15.0)
+damilola@damilola:~/Desktop/product-verification-blockchain-1$ npx hardhat run scripts/deploy.cjs --network sepolia
+[dotenv@17.2.1] injecting env (12) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+🌐 Network: sepolia
+👤 Deploying with account: 0x051051074B7BbfaB5bB1A72432129118218cDe97
+💰 Account balance: 0.002213913854505147 ETH
+💳 Using REAL WALLET - Real funds will be used for gas!
+🚀 Deploying ElectronicsAuthentication contract...
+✅ ElectronicsAuthentication deployed to: 0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+👤 Deployed by: 0x051051074B7BbfaB5bB1A72432129118218cDe97
+💰 Remaining balance: 0.001654904700964797 ETH
+📋 Transaction hash: 0xba00927e6554dc2f2743d19574b57c8436cc6670a497a8bb77b27d87a5b869ec
+⛽ Gas used: 2484632
+
+🏭 Checking pre-loaded manufacturers...
+Nexlify Tech verified: true
+Quantum Mobile verified: true
+Stellar Devices verified: true
+📋 Contract admin: 0x051051074B7BbfaB5bB1A72432129118218cDe97
+✅ Admin matches deployer: true
+📁 Deployment info saved to: /home/damilola/Desktop/product-verification-blockchain-1/deployments/ElectronicsAuthentication-sepolia.json
+
+🔗 Useful links:
+Etherscan: https://sepolia.etherscan.io/address/0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+Add to MetaMask: 0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+
+🔍 To verify contract on Etherscan:
+npx hardhat verify --network sepolia 0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+
+🎉 Deployment completed successfully!
+damilola@damilola:~/Desktop/product-verification-blockchain-1$ npx hardhat run scripts/extract-abi.cjs
+[dotenv@17.2.1] injecting env (12) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+[dotenv@17.2.1] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+✅ ABI extracted successfully!
+📁 Saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication.json
+📁 JS module saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication.js
+📁 TypeScript declaration saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication.d.ts
+📁 Contract info with ABI saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication-info.json
+📁 Frontend-optimized ABI saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication-frontend.json
+
+📊 ABI Summary:
+Functions: 20
+Events: 6
+Errors: 0
+Constructor: 1
+
+🔧 Public Functions:
+  📖 admin() → address
+  📖 devices(string ) → string, string, string, string, string, string, address, address, uint256, string, bool, uint256, string
+  📖 getAllAuthorizedManufacturers() → address[]
+  📖 getDeviceDetails(string _serialNumber) → string, string, string, string, string, string, address, uint256
+  📖 getOwnerDevices(address _owner) → string[]
+  📖 getOwnershipHistory(string _serialNumber) → address[], address[], uint256[], string[], uint256[]
+  📖 isManufacturerAuthorized(address _manufacturer) → bool
+  📖 manufacturerList(uint256 ) → address
+  📖 manufacturers(address ) → string, address, bool, uint256
+  📖 ownerDevices(address , uint256 ) → string
+  📖 ownershipHistory(string , uint256 ) → address, address, uint256, string, uint256
+  📖 serialExists(string _serialNumber) → bool
+  📖 verifiedManufacturers(address ) → bool
+  📖 verifyDevice(string _serialNumber) → bool, bool, string, string, string, string, address
+  📖 verifyMultipleDevices(string[] _serialNumbers) → bool[], bool[], string[], string[]
+
+⚡ State-Changing Functions:
+  ✍️  batchAuthorizeManufacturers(address[] _manufacturers)
+  ✍️  registerDevice(string _serialNumber, string _brand, string _model, string _deviceType, string _storage, string _color, string _batchNumber, string _specHash)
+  ✍️  revokeDeviceAuthenticity(string _serialNumber)
+  ✍️  revokeManufacturer(address _manufacturer)
+  ✍️  transferOwnership(string _serialNumber, address _newOwner, string _transferReason, uint256 _salePrice)
+
+📡 Events:
+  📢 DeviceRegistered(string indexed serialNumber, address indexed manufacturer)
+  📢 DeviceVerified(string indexed serialNumber, bool isAuthentic)
+  📢 ManufacturerAuthorized(address indexed manufacturer)
+  📢 ManufacturerRevoked(address indexed manufacturer)
+  📢 ManufacturerVerified(address indexed manufacturer, string companyName)
+  📢 OwnershipTransferred(string indexed serialNumber, address indexed from, address indexed to, uint256 price)
+
+❌ Custom Errors:
+  No custom errors defined
+
+💡 Usage Examples:
+JavaScript/Node.js:
+  const abi = require('./abi/ElectronicsAuthentication.js');
+  const contract = new ethers.Contract(address, abi, provider);
+  const result = await contract.verifyDevice("SERIAL123");
+
+React/Frontend:
+  import abi from './abi/ElectronicsAuthentication.json';
+  const contract = new ethers.Contract(address, abi, signer);
+
+TypeScript:
+  import { ElectronicsAuthenticationABI } from './abi/ElectronicsAuthentication';
+  const contract = new ethers.Contract(address, ElectronicsAuthenticationABI, provider);
+📁 Interface documentation saved to: /home/damilola/Desktop/product-verification-blockchain-1/abi/ElectronicsAuthentication-interface.md
+
+🎉 ABI extraction completed successfully!
+
+📂 Generated files:
+  - ElectronicsAuthentication.json (Raw ABI)
+  - ElectronicsAuthentication.js (JavaScript module)
+  - ElectronicsAuthentication.d.ts (TypeScript declarations)
+  - ElectronicsAuthentication-info.json (ABI + deployment info)
+  - ElectronicsAuthentication-frontend.json (Essential functions only)
+  - ElectronicsAuthentication-interface.md (Documentation)
+damilola@damilola:~/Desktop/product-verification-blockchain-1$ npx hardhat run scripts/verify.cjs --network sepolianpx hardhat run scripts/verify.cjs --network sepolia
+Error HH309: Repeated parameter --network
+
+For more info go to https://hardhat.org/HH309 or run Hardhat with --show-stack-traces
+damilola@damilola:~/Desktop/product-verification-blockchain-1$ npx hardhat run scripts/verify.cjs --network sepolia
+
+[dotenv@17.2.1] injecting env (12) from .env -- tip: 📡 version env with Radar: https://dotenvx.com/radar
+[dotenv@17.2.1] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+🔍 Verifying contract on Etherscan...
+Contract Address: 0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+[WARNING] Network and explorer-specific api keys are deprecated in favour of the new Etherscan v2 api. Support for v1 is expected to end by May 31st, 2025. To migrate, please specify a single Etherscan.io api key the apiKey config value.
+Successfully submitted source code for contract
+contracts/ElectronicsAuthentication.sol:ElectronicsAuthentication at 0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950
+for verification on the block explorer. Waiting for verification result...
+
+Successfully verified contract ElectronicsAuthentication on the block explorer.
+https://sepolia.etherscan.io/address/0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950#code
+
+Successfully verified contract ElectronicsAuthentication on Sourcify.
+https://repo.sourcify.dev/contracts/full_match/11155111/0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950/
+
+✅ Contract verified successfully!

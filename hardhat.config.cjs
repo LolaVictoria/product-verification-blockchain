@@ -10,7 +10,7 @@ module.exports = {
         enabled: true,
         runs: 200,
       },
-      viaIR: true, // Enable Yul-based IR pipeline
+      viaIR: true, 
     },
   },
   sourcify: {

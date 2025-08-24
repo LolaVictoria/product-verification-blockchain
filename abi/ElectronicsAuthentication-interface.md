@@ -1,9 +1,9 @@
 # ElectronicsAuthentication Contract Interface
 
-Generated on: 2025-08-22T16:24:43.986Z
+Generated on: 2025-08-24T03:56:18.154Z
 
 ## Contract Address
-- **sepolia**: `0xe4DB93AAe9Bfd4505Ab130143D5D10B26f3C854f`
+- **sepolia**: `0x07c05F17f53ff83d0b5F469bFA0Cb36bDc9eA950`
 
 ## View Functions (Free to call)
 
